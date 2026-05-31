@@ -131,6 +131,61 @@ Durante a execução, é possível:
 * acompanhar consumo, custo estimado e CO₂ evitado.
 
 ---
+## Arquitetura do Sistema
+
+A prova de conceito foi desenvolvida como uma simulação funcional do sistema ChargeGrid Intelligence.
+
+A arquitetura simulada é composta por:
+
+Morador
+  ↓
+Autenticação RFID simulada
+  ↓
+Dashboard / CSMS em Python com Streamlit
+  ↓
+Lógica de Balanceamento Dinâmico de Carga
+  ↓
+Distribuição de potência entre veículos conectados
+  ↓
+Registro de consumo, custo e CO₂ evitado
+
+
+As fontes de energia consideradas na simulação são:
+
+Energia Solar + Bateria + Rede Elétrica
+              ↓
+     Limite máximo do condomínio
+              ↓
+ Distribuição entre os carregadores
+
+
+## Representação do OCPP na Prova de Conceito
+
+Nesta prova de conceito, o protocolo OCPP não foi implementado em comunicação real com carregadores físicos. Ele foi representado de forma abstrata na lógica do simulador.
+
+A autenticação RFID representa a etapa de `Authorize.req`.
+
+A adição de um veículo representa o início de uma sessão de recarga, equivalente ao `StartTransaction`.
+
+A redistribuição automática de potência representa a lógica do `SetChargingProfile`, usada para o balanceamento dinâmico de carga.
+
+A remoção de um veículo representa o encerramento da sessão, equivalente ao `StopTransaction`.
+
+Essa abordagem foi escolhida porque o objetivo da Sprint 2 é comprovar a lógica funcional inicial da solução, sem depender de carregadores físicos reais.
+
+
+## Dados Simulados
+
+O protótipo utiliza dados simulados para representar diferentes situações de operação do condomínio.
+
+| Cenário | Solar | Bateria | Rede | Objetivo |
+|---|---:|---:|---:|---|
+| Pico solar | 22 kW | 4 kW | 4 kW | Demonstrar maior uso da energia fotovoltaica |
+| Transição | 12 kW | 10 kW | 8 kW | Simular queda da geração solar e apoio da bateria |
+| Pico tarifário | 2 kW | 16 kW | 12 kW | Reduzir dependência da rede em horário caro |
+| Off-peak | 0 kW | 6 kW | 24 kW | Simular período de menor custo e maior uso da rede |
+
+Esses valores foram definidos para fins de demonstração técnica e não representam uma instalação real específica.
 
 ## Conclusão
 
