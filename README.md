@@ -133,10 +133,11 @@ Durante a execução, é possível:
 ---
 ## Arquitetura do Sistema
 
-A prova de conceito foi desenvolvida como uma simulação funcional do sistema ChargeGrid Intelligence.
+A prova de conceito foi desenvolvida como uma simulação funcional do sistema **ChargeGrid Intelligence**.
 
 A arquitetura simulada é composta por:
 
+```txt
 Morador
   ↓
 Autenticação RFID simulada
@@ -148,15 +149,19 @@ Lógica de Balanceamento Dinâmico de Carga
 Distribuição de potência entre veículos conectados
   ↓
 Registro de consumo, custo e CO₂ evitado
-
+```
 
 As fontes de energia consideradas na simulação são:
 
+```txt
 Energia Solar + Bateria + Rede Elétrica
               ↓
      Limite máximo do condomínio
               ↓
  Distribuição entre os carregadores
+```
+
+O simulador representa de forma simplificada o papel do CSMS, responsável por controlar sessões de recarga, autenticar usuários, calcular energia disponível e distribuir potência entre os carregadores.
 
 
 ## Representação do OCPP na Prova de Conceito
